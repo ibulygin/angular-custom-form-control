@@ -7,18 +7,18 @@ import { FormControl, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/f
   styleUrls: ['./name-input.component.css'],
   providers: [
     {
-      provide: NG_VALUE_ACCESSOR, multi: true,
-      useExisting: forwardRef(() => NameInputComponent),
+      provide: NG_VALUE_ACCESSOR, multi:true,
+      useExisting: forwardRef(() => NameInputComponent)
     }
-  ],
+  ]
 })
-export class NameInputComponent implements OnInit, ControlValueAccessor {
+export class NameInputComponent implements OnInit, ControlValueAccessor{
 
   public firstNameInput = new FormControl('');
   public lastNameInput = new FormControl('');
 
   private onChange: (name: string) => void;
-  private onTouched: () => void;
+  private onToched: () => void;
 
   constructor() { }
 
@@ -26,17 +26,17 @@ export class NameInputComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
-    const [ firstName, lastName ] = String(obj).split(' ');
+    const [ firstName, lastName ] = String(obj).split(" ");
     this.firstNameInput.setValue(firstName);
     this.lastNameInput.setValue(lastName);
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: any):void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
+  registerOnTouched(fn: any) {
+    this.onToched = fn;
   }
 
   setDisabledState?(isDisabled: boolean): void {
@@ -50,11 +50,11 @@ export class NameInputComponent implements OnInit, ControlValueAccessor {
   }
 
   doInput() {
-    this.onChange(this.firstNameInput.value + ' ' + this.lastNameInput.value);
+    this.onChange(this.firstNameInput.value + " " + this.lastNameInput.value);
   }
 
   doBlur() {
-    this.onTouched();
+    this.onToched()
   }
 
 }
